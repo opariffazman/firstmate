@@ -1,0 +1,48 @@
+=== 1. BASE commit (bug): FM_FLEET_PRUNE default, landed no-upstream branch never pruned ===
+branches before:
+  fm/landed  upstream=[] track=[]
+  fm/parked  upstream=[] track=[]
+  main  upstream=[origin/main] track=[]
+
+$ fm-fleet-sync.sh (base)
+  proj: synced 22bfa91..59b4e62
+  branches after:
+  fm/landed  upstream=[] track=[]
+  fm/parked  upstream=[] track=[]
+  main  upstream=[origin/main] track=[]
+
+=== 2. CHANGE, opt-in OFF (default): behaviour unchanged, landed branch kept ===
+$ fm-fleet-sync.sh (change, no opt-in)
+  proj: synced 22bfa91..59b4e62
+  branches after:
+  fm/landed  upstream=[] track=[]
+  fm/parked  upstream=[] track=[]
+  main  upstream=[origin/main] track=[]
+
+=== 3. CHANGE, FM_FLEET_PRUNE_MERGED=1: landed pruned, parked unpushed work survives ===
+$ FM_FLEET_PRUNE_MERGED=1 fm-fleet-sync.sh (change)
+  proj: synced 82dc311..a7bf7c1
+  proj: pruned fm/landed (landed, no upstream)
+  branches after:
+  fm/parked  upstream=[] track=[]
+  main  upstream=[origin/main] track=[]
+
+  parked commit still reachable: parked wip
+
+=== 4. CHANGE, FM_FLEET_PRUNE_MERGED=1 FM_FLEET_PRUNE=0: every prune disabled ===
+$ FM_FLEET_PRUNE=0 FM_FLEET_PRUNE_MERGED=1 fm-fleet-sync.sh (change)
+  proj: synced 82dc311..a7bf7c1
+  branches after:
+  fm/landed  upstream=[] track=[]
+  fm/parked  upstream=[] track=[]
+  main  upstream=[origin/main] track=[]
+
+=== 5. CHANGE, --no-pr-lookup (bootstrap form): content proof still prunes, zero gh calls ===
+$ FM_FLEET_PRUNE_MERGED=1 fm-fleet-sync.sh --no-pr-lookup (change)
+  proj: synced 82dc311..a7bf7c1
+  proj: pruned fm/landed (landed, no upstream)
+  branches after:
+  fm/parked  upstream=[] track=[]
+  main  upstream=[origin/main] track=[]
+
+  gh/gh-axi pr calls made: 0
