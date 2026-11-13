@@ -1,0 +1,7 @@
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.UbfcDB
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.UbfcDB
+WARNING: watcher still down (same stale episode; last beat: never, grace 300s) - full banner already printed this episode.
+warning: /tmp/fm-lab.UbfcDB/data/pk1/launch-brief.md records no ship branch; defaulting to legacy branch fm/pk1
+warning: /tmp/fm-lab.UbfcDB/data/pk1/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode no-mistakes - confirm its definition of done matches
+relaunched pk1 harness=claude from=claude model=default effort=default backend=tmux endpoint=fmses:fm-pk1 worktree=/tmp/fm-lab.UbfcDB/wt
+rc=0 elapsed=8s

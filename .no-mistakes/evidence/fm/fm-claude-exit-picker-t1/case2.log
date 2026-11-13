@@ -1,0 +1,4 @@
+fm-gate-refuse: gate agent lifecycle permitted only against lab home /tmp/fm-lab.UbfcDB
+error: task pk1 has background work still running after 15s (shell · sleep 90 && echo long-job-done); the Claude background-task exit picker is left open, which holds that work's completion so it cannot wake the old session. Nothing was stopped and no picker option was chosen. Retry once the work finishes, or allow a longer wait with FM_CONTROL_PICKER_WAIT
+error: relaunch of pk1 failed while stopping the old agent, which is still running; its original instructions were restored
+rc=1 elapsed=15s
